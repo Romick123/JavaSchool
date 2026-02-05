@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher form</title>
+</head>
+<body>
+
+<form th:action="@{/admin/teachers/save}"
+      th:object="${teacher}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+        Name:
+        <input type="text" th:field="*{name}" required>
+    </div>
+
+    <div>
+        Subjects:
+        <select th:field="*{subjects}" multiple size="5">
+            <option th:each="s : ${subjects}"
+                    th:value="${s.id}"
+                    th:text="${s.name}"
+                    th:selected="${teacher.subjects.contains(s)}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+<a href="/admin/teachers">Back</a>
+
+</body>
+</html>

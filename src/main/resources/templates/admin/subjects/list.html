@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subjects</title>
+</head>
+<body>
+
+<h1>Subjects</h1>
+
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<a href="/admin/subjects/new">Add subject</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="subject : ${subjects}">
+        <td th:text="${subject.id}"></td>
+        <td th:text="${subject.name}"></td>
+        <td>
+            <a th:href="@{/admin/subjects/edit/{id}(id=${subject.id})}">Edit</a>
+            |
+            <a th:href="@{/admin/subjects/delete/{id}(id=${subject.id})}"
+               onclick="return confirm('Delete?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/home">Back home</a>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subjects</title>
+</head>
+<body>
+
+<h1>Subjects</h1>
+
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<a href="/admin/teachers/new">Add teacher</a>
+
+<table border="1">
+
+    <tr th:each="t : ${teachers}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.name}"></td>
+        <td>
+        <span th:each="s : ${t.subjects}"
+              th:text="${s.name + ' '}"></span>
+        </td>
+        <td>
+            <a th:href="@{/admin/teachers/edit/{id}(id=${t.id})}">Edit</a>
+        </td>
+    </tr>
+
+</table>
+
+<a href="/home">Back home</a>
+
+</body>
+</html>
