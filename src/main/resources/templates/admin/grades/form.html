@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Grade form</h2>
+
+<form th:action="@{/admin/grades/save}"
+      th:object="${grade}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <p>
+        Student:
+        <select th:field="*{student}">
+            <option th:each="s: ${students}"
+                    th:value="${s.id}"
+                    th:text="${s.name}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Subject:
+        <select th:field="*{subject}">
+            <option th:each="s: ${subjects}"
+                    th:value="${s.id}"
+                    th:text="${s.name}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Value:
+        <input type="number" th:field="*{grade_value}" min="1" max="5"/>
+    </p>
+
+    <p>
+        Type:
+        <input type="text" th:field="*{typeOfWork}"/>
+    </p>
+
+    <p>
+        Date:
+        <input type="date" th:field="*{date}"/>
+    </p>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
