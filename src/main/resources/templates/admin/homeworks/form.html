@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Homework form</h2>
+
+<form th:action="@{/admin/homeworks/save}"
+      th:object="${homework}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <p>
+        Class:
+        <select th:field="*{classRoom}">
+            <option th:each="c: ${classes}"
+                    th:value="${c.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Subject:
+        <select th:field="*{subject}">
+            <option th:each="s: ${subjects}"
+                    th:value="${s.id}"
+                    th:text="${s.name}">
+            </option>
+        </select>
+    </p>
+
+    <p>
+        Description:
+        <textarea th:field="*{description}"></textarea>
+    </p>
+
+    <p>
+        Due date:
+        <input type="date" th:field="*{dueDate}">
+    </p>
+
+    <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>
