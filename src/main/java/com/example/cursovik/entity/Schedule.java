@@ -1,4 +1,5 @@
 package com.example.cursovik.entity;
+import com.example.cursovik.DayOfWeek;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,7 +22,8 @@ public class Schedule {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    private String dayOfWeek;
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek dayOfWeek;
 
     private Integer lessonNumber;
 
@@ -57,11 +59,11 @@ public class Schedule {
         this.teacher = teacher;
     }
 
-    public String getDayOfWeek() {
+    public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student form</title>
+</head>
+
+<body>
+
+<h1>Student</h1>
+
+<form th:action="@{/admin/schedule/save}"
+      th:object="${schedule}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+        Class:
+        <select th:field="*{classRoom}">
+            <option th:each="c : ${classes}"
+                    th:value="${c.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        Day:
+        <select th:field="*{dayOfWeek}">
+            <option th:each="d : ${days}"
+                    th:value="${d}"
+                    th:text="${d}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        Lesson number:
+        <input type="number" th:field="*{lessonNumber}" min="1" max="6"/>
+    </div>
+
+    <div>
+        Subject:
+        <select th:field="*{subject}">
+            <option th:each="s : ${subjects}"
+                    th:value="${s.id}"
+                    th:text="${s.name}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        Teacher:
+        <select th:field="*{teacher}">
+            <option th:each="t : ${teachers}"
+                    th:value="${t.id}"
+                    th:text="${t.name}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+
+<a href="/admin/schedule">Back</a>
+
+</body>
+</html>
