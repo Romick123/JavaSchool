@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ученик</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h2 th:text="${student.name}"></h2>
+<p>
+    Класс:
+    <b th:text="${student.classRoom.name}"></b>
+</p>
+
+<h3>Посещаемость</h3>
+<table>
+    <tr>
+        <th>Дата</th>
+        <th>Предмет</th>
+        <th>Статус</th>
+    </tr>
+    <tr th:each="a : ${attendance}">
+        <td th:text="${a.attendanceDate}"></td>
+        <td th:text="${a.subject.name}"></td>
+        <td th:text="${a.present ? '✔' : '✖'}"></td>
+    </tr>
+</table>
+
+<h3>Оценки</h3>
+<table>
+    <tr>
+        <th>Дата</th>
+        <th>Предмет</th>
+        <th>Оценка</th>
+    </tr>
+    <tr th:each="g : ${grades}">
+        <td th:text="${g.date}"></td>
+        <td th:text="${g.subject.name}"></td>
+        <td th:text="${g.grade_value}"></td>
+    </tr>
+</table>
+
+<a href="javascript:history.back()">← Назад</a>
+
+</body>
+</html>

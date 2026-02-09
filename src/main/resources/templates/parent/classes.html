@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Классы</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Выбор класса</h1>
+
+<ul>
+    <li th:each="c : ${classes}">
+        <a th:href="@{/parent/students/class/{id}(id=${c.id})}"
+           th:text="${c.name}">
+        </a>
+    </li>
+</ul>
+
+<a href="/home">← Назад</a>
+</body>
+</html>

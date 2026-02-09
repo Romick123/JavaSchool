@@ -25,8 +25,8 @@ public class SecurityConfig {
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/login", "/css/**", "/register").permitAll()
 
-                                .requestMatchers("/admin/**", "/teacher/**", "/parent/**").hasRole("ADMIN")
-                                .requestMatchers("/teacher/**", "/parent/**").hasRole("TEACHER")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/teacher/**").hasRole("TEACHER")
                                 .requestMatchers("/parent/**").hasRole("PARENT")
 
                         .anyRequest().authenticated())
@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home", true)
                         .permitAll())
 
-                .logout(logout-> logout.logoutSuccessUrl("/login"));
+                .logout(logout-> logout.logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies());
 
         return http.build();
     }
