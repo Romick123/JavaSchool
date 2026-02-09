@@ -1,5 +1,4 @@
 --(password = 1234)
-
 INSERT INTO users (email, password, role) VALUES
 ('admin@test.com', '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'ADMIN'),
 ('teacher@test.com', '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
@@ -32,10 +31,10 @@ INSERT INTO grades (student_id, subject_id, grade_value, type_of_work, grade_dat
 (1, 2, 4, 'Homework', '2026-01-11'),
 (2, 1, 3, 'Quiz', '2026-01-12');
 
-INSERT INTO attendance (student_id, date, present) VALUES
-(1, '2026-01-10', true),
-(2, '2026-01-10', false),
-(3, '2026-01-11', true);
+INSERT INTO attendance (student_id, subject_id, attendance_date, present) VALUES
+(1, 2, '2026-01-10', true),
+(2, 2, '2026-01-10', false),
+(3, 1, '2026-01-11', true);
 
 INSERT INTO homeworks (subject_id, class_room_id, description, due_date) VALUES
 (1, 1, 'Solve exercises 1-10 from textbook', '2026-01-15'),

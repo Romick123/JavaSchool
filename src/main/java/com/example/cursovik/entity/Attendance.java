@@ -15,7 +15,12 @@ public class Attendance {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    private LocalDate date;
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    @Column(name = "attendance_date")
+    private LocalDate attendanceDate;
 
     private Boolean present;
 
@@ -35,12 +40,12 @@ public class Attendance {
         this.student = student;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getAttendanceDate() {
+        return attendanceDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setAttendanceDate(LocalDate attendanceDate) {
+        this.attendanceDate = attendanceDate;
     }
 
     public Boolean getPresent() {
@@ -49,6 +54,14 @@ public class Attendance {
 
     public void setPresent(Boolean present) {
         this.present = present;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }
 

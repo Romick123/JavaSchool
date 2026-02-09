@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Посещаемость</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<form th:action="@{/teacher/attendance/save}" th:object="${attendance}" method="post">
+
+    <select th:field="*{student}">
+        <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.name}"></option>
+    </select>
+
+    <select th:field="*{subject}">
+        <option th:each="s : ${subjects}" th:value="${s.id}" th:text="${s.name}"></option>
+    </select>
+
+    <label>
+        Present:
+        <input type="checkbox" th:field="*{present}">
+    </label>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
