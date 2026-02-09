@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/schedule")
 public class ScheduleController {
@@ -34,6 +36,9 @@ public class ScheduleController {
     @GetMapping
     public String list(Model model){
         model.addAttribute("schedule", scheduleRepository.findAll());
+        model.addAttribute("days", DayOfWeek.values());
+        model.addAttribute("lessons", List.of(1,2,3,4,5,6));
+        model.addAttribute("classes", classRoomRepository.findAll());
         return "admin/schedule/list";
     }
 

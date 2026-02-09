@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
 <body>
 
 <h2>Grades</h2>
@@ -8,7 +11,6 @@
 
 <table border="1">
     <tr>
-        <th>ID</th>
         <th>Student</th>
         <th>Subject</th>
         <th>Value</th>
@@ -17,7 +19,6 @@
         <th>Actions</th>
     </tr>
     <tr th:each="g: ${grades}">
-        <td th:text="${g.id}"></td>
         <td th:text="${g.student.name}"></td>
         <td th:text="${g.subject.name}"></td>
         <td th:text="${g.grade_value}"></td>
@@ -30,5 +31,6 @@
     </tr>
 </table>
 
+<a href="/home">Back home</a>
 </body>
 </html>

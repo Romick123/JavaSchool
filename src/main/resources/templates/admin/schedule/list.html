@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Schedule</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -9,30 +10,40 @@
 
 <a href="/admin/schedule/new">Add lesson</a>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Class</th>
-        <th>Day</th>
-        <th>Lesson</th>
-        <th>Subject</th>
-        <th>Teacher</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="s : ${schedule}">
-        <td th:text="${s.classRoom != null ? s.classRoom.name : '-'}"></td>
-        <td th:text="${s.dayOfWeek}"></td>
-        <td th:text="${s.lessonNumber}"></td>
-        <td th:text="${s.subject != null ? s.subject.name : '-'}"></td>
-        <td th:text="${s.teacher != null ? s.teacher.name : '-'}"></td>
-        <td>
-            <a th:href="@{/admin/schedule/edit/{id}(id=${s.id})}">Edit</a> |
-            <a th:href="@{/admin/schedule/delete/{id}(id=${s.id})}">Del</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div th:each="c : ${classes}">
+    <h2 th:text="'Class ' + ${c.name}"></h2>
 
+    <table>
+        <thead>
+        <tr>
+            <th>Lesson</th>
+            <th th:each="d : ${days}" th:text="${d}"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="l : ${lessons}">
+            <td><b th:text="${l}"></b></td>
+
+            <td th:each="d : ${days}">
+                <div th:each="s : ${schedule}"
+                     th:if="${s.classRoom.id == c.id and s.lessonNumber == l and s.dayOfWeek == d}"
+                     class="lesson-cell">
+
+                    <a th:href="@{/admin/schedule/edit/{id}(id=${s.id})}"
+                       class="lesson-link">
+
+                        <span th:text="${s.subject.name}"></span>
+                        <small th:text="${s.teacher.name}"></small>
+
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="/home">Back home</a>
 </body>
 </html>

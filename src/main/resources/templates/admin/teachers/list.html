@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Subjects</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -16,7 +17,6 @@
 <table border="1">
 
     <tr th:each="t : ${teachers}">
-        <td th:text="${t.id}"></td>
         <td th:text="${t.name}"></td>
         <td>
         <span th:each="s : ${t.subjects}"

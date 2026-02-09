@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Subjects</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -15,13 +16,11 @@
 
 <table border="1">
     <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Actions</th>
     </tr>
 
     <tr th:each="subject : ${subjects}">
-        <td th:text="${subject.id}"></td>
         <td th:text="${subject.name}"></td>
         <td>
             <a th:href="@{/admin/subjects/edit/{id}(id=${subject.id})}">Edit</a>
