@@ -23,10 +23,10 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers("/h2-console/**").permitAll()
-                                .requestMatchers("/login", "/css/**").permitAll()
+                                .requestMatchers("/login", "/css/**", "/register").permitAll()
 
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/teacher/**").hasRole("TEACHER")
+                                .requestMatchers("/admin/**", "/teacher/**", "/parent/**").hasRole("ADMIN")
+                                .requestMatchers("/teacher/**", "/parent/**").hasRole("TEACHER")
                                 .requestMatchers("/parent/**").hasRole("PARENT")
 
                         .anyRequest().authenticated())
