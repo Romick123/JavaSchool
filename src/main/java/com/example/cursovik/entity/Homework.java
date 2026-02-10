@@ -22,6 +22,7 @@ public class Homework {
     @Column(length = 500)
     private String description;
 
+    @Column(name = "homework_date")
     private LocalDate dueDate;
 
     public Long getId() {
