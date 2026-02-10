@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Предметы</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h2>Мои предметы</h2>
+<ul>
+    <li th:each="s : ${subjects}">
+        <a th:href="@{/teacher/grades/subject/{id}(id=${s.id})}"
+           th:text="${s.name}">
+        </a>
+    </li>
+</ul>
+<a href="javascript:history.back()">← Назад</a>
+</body>
+</html>
