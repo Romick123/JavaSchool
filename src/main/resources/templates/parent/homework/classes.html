@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Классы</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +21,7 @@
 
 <ul>
     <li th:each="c : ${classes}">
-        <a th:href="@{/parent/students/class/{id}(id=${c.id})}"
+        <a th:href="@{/parent/homework/class/{id}(id=${c.id})}"
            th:text="${c.name}">
         </a>
     </li>

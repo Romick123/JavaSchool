@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface HomeworkRepository extends JpaRepository<Homework, Long> {
 
-    List<Homework> findByClassRoom(ClassRoom classRoom);
+    List<Homework> findByClassRoomId(Long classRoomId);
     List<Homework> findBySubject(Subject subject);
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашнее задание</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h2>Домашние задания</h2>
+<ul>
+    <li th:each="h : ${homeworks}">
+        <b th:text="${h.subject.name}"></b> :
+        <span th:text="${h.description}"></span>
+        (<span th:text="${h.dueDate}"></span>)
+    </li>
+</ul>
+</body>
+</html>

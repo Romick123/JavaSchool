@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашнее задание</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h2>Задать домашнее задание</h2>
+
+<form th:action="@{/teacher/homework/save}"
+      th:object="${homework}"
+      method="post">
+    <select name="subject.id">
+        <option th:each="s : ${subjects}"
+                th:value="${s.id}"
+                th:text="${s.name}"></option>
+    </select>
+
+    <select name="classRoom.id">
+        <option th:each="c : ${classes}"
+                th:value="${c.id}"
+                th:text="${c.name}"></option>
+    </select>
+
+    <p>
+        Description:
+        <textarea th:field="*{description}"></textarea>
+    </p>
+
+    <p>
+        Due date:
+        <input type="date" th:field="*{dueDate}">
+    </p>
+
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>

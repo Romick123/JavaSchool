@@ -34,7 +34,7 @@ public class ParentStudentController {
     @GetMapping
     public String selectClass(Model model){
         model.addAttribute("classes", classRoomRepository.findAll());
-        return "parent/classes";
+        return "parent/student/classes";
     }
 
     @GetMapping("/class/{id}")
@@ -42,7 +42,7 @@ public class ParentStudentController {
         ClassRoom classRoom = classRoomRepository.findById(id).orElseThrow();
         model.addAttribute("classRoom", classRoom);
         model.addAttribute("students", studentRepository.findByClassRoomId(id));
-        return "parent/list";
+        return "parent/student/list";
     }
 
     @GetMapping("/{id}")
@@ -51,6 +51,6 @@ public class ParentStudentController {
         model.addAttribute("student", student);
         model.addAttribute("attendance", attendanceRepository.findByStudentId(id));
         model.addAttribute("grades", gradeRepository.findByStudentId(id));
-        return "parent/profile";
+        return "parent/student/profile";
     }
 }
