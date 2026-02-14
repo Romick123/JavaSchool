@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Учителя</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
+
+<div th:insert="~{layout/base :: header}"></div>
 
 <h1>Учителя</h1>
 
@@ -12,7 +14,7 @@
     <p th:text="${errorMessage}"></p>
 </div>
 
-<a href="/admin/teachers/new">Add teacher</a>
+<a href="/admin/teachers/new">Добавить учителя</a>
 
 <table border="1">
 
@@ -23,13 +25,13 @@
               th:text="${s.name + ' '}"></span>
         </td>
         <td>
-            <a th:href="@{/admin/teachers/edit/{id}(id=${t.id})}">Edit</a>
+            <a th:href="@{/admin/teachers/edit/{id}(id=${t.id})}">Изменить</a>
         </td>
     </tr>
 
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 
 </body>
 </html>

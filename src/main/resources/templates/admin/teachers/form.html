@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Teacher form</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
+
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Учитель</h1>
 
 <form th:action="@{/admin/teachers/save}"
       th:object="${teacher}"
@@ -13,12 +17,12 @@
     <input type="hidden" th:field="*{id}"/>
 
     <div>
-        Name:
+        Имя:
         <input type="text" th:field="*{name}" required>
     </div>
 
     <div>
-        Subjects:
+        Предметы:
         <select th:field="*{subjects}" multiple size="5">
             <option th:each="s : ${subjects}"
                     th:value="${s.id}"
@@ -28,10 +32,10 @@
         </select>
     </div>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 </form>
 
-<a href="/admin/teachers">Back</a>
+<a href="/admin/teachers">Назад</a>
 
 </body>
 </html>

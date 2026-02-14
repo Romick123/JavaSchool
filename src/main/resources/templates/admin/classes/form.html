@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h2>Class form</h2>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h2>Класс</h2>
 
 <form th:action="@{/admin/classes}" th:object="${classRoom}" method="post">
 
     <input type="hidden" th:field="*{id}"/>
 
-    Name:
+    Название:
     <input type="text" th:field="*{name}" required/>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 
 </form>
+
+<a href="/admin/classes">Назад</a>
 
 </body>
 </html>

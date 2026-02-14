@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Subjects</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h1>Subjects</h1>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Предметы</h1>
 
 <div th:if="${errorMessage}" style="color:red;">
     <p th:text="${errorMessage}"></p>
 </div>
 
-<a href="/admin/subjects/new">Add subject</a>
+<a href="/admin/subjects/new">Добавить предмет</a>
 
 <table border="1">
     <tr>
@@ -23,15 +25,15 @@
     <tr th:each="subject : ${subjects}">
         <td th:text="${subject.name}"></td>
         <td>
-            <a th:href="@{/admin/subjects/edit/{id}(id=${subject.id})}">Edit</a>
+            <a th:href="@{/admin/subjects/edit/{id}(id=${subject.id})}">Изменить</a>
             |
             <a th:href="@{/admin/subjects/delete/{id}(id=${subject.id})}"
-               onclick="return confirm('Delete?')">Delete</a>
+               onclick="return confirm('Delete?')">Удалить</a>
         </td>
     </tr>
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 
 </body>
 </html>

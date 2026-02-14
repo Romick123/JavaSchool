@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Предметы</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
+
+<div th:insert="~{layout/base :: header}"></div>
 <h2>Мои предметы</h2>
 <ul>
     <li th:each="s : ${subjects}">

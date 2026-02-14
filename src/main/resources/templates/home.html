@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <meta charset="UTF-8">
-    <title>Домашняя страница</title>
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
-<h1>Админ</h1>
-<a href="/admin/teachers">Учителя</a>
-<a href="/admin/subjects">Предметы</a>
-<a href="/admin/students">Студенты</a>
-<a href="/admin/grades">Оценки</a>
-<a href="/admin/classes">Классы</a>
-<a href="/admin/homeworks">ДЗ</a>
-<a href="/admin/schedule">Расписание</a>
-<a href="/admin/teacherreg">зарегистрировать учителя</a>
-<h1>Учитель</h1>
-<a href="/teacher/attendance/new">Отметить</a>
-<a href="/teacher/grades">Поставить оценку</a>
-<a href="/teacher/homework">Оставить домашнее задание</a>
-<h1>Родитель</h1>
-<a href="/parent/students">Посмотреть список классов</a>
+
+<div th:insert="~{layout/base :: header}"></div>
+
+    <main class="container">
+            <h1 class="title">Школьная информационная система</h1>
+
+            <div class="card">
+                <h2>Родителю</h2>
+                <a class="btn" href="/parent/students">📚 Список классов и учеников</a>
+            </div>
+
+            <div class="card teacher" sec:authorize="hasRole('TEACHER')">
+                <h2>Учителю</h2>
+                <a class="btn" href="/teacher/attendance/new">📝 Отметить посещаемость</a>
+                <a class="btn" href="/teacher/grades">⭐ Поставить оценки</a>
+                <a class="btn" href="/teacher/homework">📄 Задать домашнее задание</a>
+            </div>
+
+            <div class="card admin" sec:authorize="hasRole('ADMIN')">
+                <h2>Администратору</h2>
+                <a class="btn" href="/admin/teachers">👨‍🏫 Учителя</a>
+                <a class="btn" href="/admin/subjects">📘 Предметы</a>
+                <a class="btn" href="/admin/students">👨‍🎓 Студенты</a>
+                <a class="btn" href="/admin/classes">🏫 Классы</a>
+                <a class="btn" href="/admin/schedule">📅 Расписание</a>
+                <a class="btn" href="/admin/grades">📊 Оценки</a>
+                <a class="btn" href="/admin/homeworks">📌 Домашние задания</a>
+                <a class="btn" href="/admin/teacherreg">➕ Регистрация учителя</a>
+            </div>
+
+    </main>>
 </body>
 </html>

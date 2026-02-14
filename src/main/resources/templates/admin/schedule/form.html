@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <title>Student form</title>
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
 
 <body>
 
-<h1>Student</h1>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Добавление урока</h1>
 
 <form th:action="@{/admin/schedule/save}"
       th:object="${schedule}"
@@ -16,7 +17,7 @@
     <input type="hidden" th:field="*{id}"/>
 
     <div>
-        Class:
+        Класс:
         <select th:field="*{classRoom}">
             <option th:each="c : ${classes}"
                     th:value="${c.id}"
@@ -26,7 +27,7 @@
     </div>
 
     <div>
-        Day:
+        День недели:
         <select th:field="*{dayOfWeek}">
             <option th:each="d : ${days}"
                     th:value="${d}"
@@ -36,12 +37,12 @@
     </div>
 
     <div>
-        Lesson number:
+        Урок:
         <input type="number" th:field="*{lessonNumber}" min="1" max="6"/>
     </div>
 
     <div>
-        Subject:
+        Предмет:
         <select th:field="*{subject}">
             <option th:each="s : ${subjects}"
                     th:value="${s.id}"
@@ -51,7 +52,7 @@
     </div>
 
     <div>
-        Teacher:
+        Учитель:
         <select th:field="*{teacher}">
             <option th:each="t : ${teachers}"
                     th:value="${t.id}"
@@ -60,10 +61,10 @@
         </select>
     </div>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 </form>
 
-<a href="/admin/schedule">Back</a>
+<a href="/admin/schedule">Назад</a>
 
 </body>
 </html>

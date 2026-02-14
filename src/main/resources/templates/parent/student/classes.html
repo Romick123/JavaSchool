@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Классы</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
+
+<div th:insert="~{layout/base :: header}"></div>
 <h1>Выбор класса</h1>
 
 <ul>

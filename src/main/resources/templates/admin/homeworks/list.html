@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h2>Homeworks</h2>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h2>Домашняя работа</h2>
 
 <a th:href="@{/admin/homeworks/new}">Add Homework</a>
 
@@ -24,13 +27,13 @@
         <td th:text="${h.description}"></td>
         <td th:text="${h.dueDate}"></td>
         <td>
-            <a th:href="@{/admin/homeworks/edit/{id}(id=${h.id})}">Edit</a> |
-            <a th:href="@{/admin/homeworks/delete/{id}(id=${h.id})}">Del</a>
+            <a th:href="@{/admin/homeworks/edit/{id}(id=${h.id})}">Изменить</a> |
+            <a th:href="@{/admin/homeworks/delete/{id}(id=${h.id})}">Удалить</a>
         </td>
     </tr>
 
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 </body>
 </html>

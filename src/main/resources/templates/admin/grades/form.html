@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h2>Grade form</h2>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h2>Оценка</h2>
 
 <form th:action="@{/admin/grades/save}"
       th:object="${grade}"
@@ -14,7 +17,7 @@
     <input type="hidden" th:field="*{id}"/>
 
     <p>
-        Student:
+        Ученик:
         <select th:field="*{student}">
             <option th:each="s: ${students}"
                     th:value="${s.id}"
@@ -24,7 +27,7 @@
     </p>
 
     <p>
-        Subject:
+        Предмет:
         <select th:field="*{subject}">
             <option th:each="s: ${subjects}"
                     th:value="${s.id}"
@@ -34,22 +37,23 @@
     </p>
 
     <p>
-        Value:
+        Оценка:
         <input type="number" th:field="*{grade_value}" min="1" max="5"/>
     </p>
 
     <p>
-        Type:
+        За что:
         <input type="text" th:field="*{typeOfWork}"/>
     </p>
 
     <p>
-        Date:
+        Дата:
         <input type="date" th:field="*{date}"/>
     </p>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 </form>
 
+<a href="/admin/grades">Назад</a>
 </body>
 </html>

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Students</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h1>Students</h1>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Ученики</h1>
 
 <div th:if="${errorMessage}" style="color:red;">
     <p th:text="${errorMessage}"></p>
 </div>
 
-<a href="/admin/students/new">Add student</a>
+<a href="/admin/students/new">Добавить студента</a>
 
 <table border="1">
     <tr>
@@ -25,15 +27,15 @@
         <td th:text="${student.name}"></td>
         <td th:text="${student.classRoom.name}"></td>
         <td>
-            <a th:href="@{/admin/students/edit/{id}(id=${student.id})}">Edit</a>
+            <a th:href="@{/admin/students/edit/{id}(id=${student.id})}">Изменить</a>
             |
             <a th:href="@{/admin/students/delete/{id}(id=${student.id})}"
-               onclick="return confirm('Delete?')">Delete</a>
+               onclick="return confirm('Delete?')">Удалить</a>
         </td>
     </tr>
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 
 </body>
 </html>

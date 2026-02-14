@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h2>Grades</h2>
+<div th:insert="~{layout/base :: header}"></div>
 
-<a th:href="@{/admin/grades/new}">Add Grade</a>
+<h2>Оценки</h2>
+
+<a th:href="@{/admin/grades/new}">Поставить оценку</a>
 
 <table border="1">
     <tr>
-        <th>Student</th>
-        <th>Subject</th>
-        <th>Value</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Actions</th>
+        <th>Ученик</th>
+        <th>Предмет</th>
+        <th>Оценка</th>
+        <th>За что</th>
+        <th>Дата</th>
+        <th>действие</th>
     </tr>
     <tr th:each="g: ${grades}">
         <td th:text="${g.student.name}"></td>
@@ -25,12 +28,12 @@
         <td th:text="${g.typeOfWork}"></td>
         <td th:text="${g.date}"></td>
         <td>
-            <a th:href="@{/admin/grades/edit/{id}(id=${g.id})}">Edit</a> |
-            <a th:href="@{/admin/grades/delete/{id}(id=${g.id})}">Del</a>
+            <a th:href="@{/admin/grades/edit/{id}(id=${g.id})}">Изменить</a> |
+            <a th:href="@{/admin/grades/delete/{id}(id=${g.id})}">Удалить</a>
         </td>
     </tr>
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 </body>
 </html>

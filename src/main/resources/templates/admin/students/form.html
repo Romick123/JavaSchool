@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Student form</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
 
 <body>
 
-<h1>Student</h1>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Ученик</h1>
 <form th:action="@{/admin/students/save}" th:object="${student}" method="post">
 
     <input type="hidden" th:field="*{id}"/>
@@ -27,11 +28,11 @@
 
     <br><br>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 
 </form>
 
-<a href="/admin/students">Back</a>
+<a href="/admin/students">Отмена</a>
 
 </body>
 </html>

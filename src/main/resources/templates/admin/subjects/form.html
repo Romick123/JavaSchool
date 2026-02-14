@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Subject form</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h1>Subject</h1>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h1>Предмет</h1>
 
 <form th:action="@{/admin/subjects/save}" th:object="${subject}" method="post">
 
@@ -17,10 +19,10 @@
 
     <br><br>
 
-    <button type="submit">Save</button>
+    <button type="submit">Сохранить</button>
 </form>
 
-<a href="/admin/subjects">Back</a>
+<a href="/admin/subjects">Назад</a>
 
 </body>
 </html>

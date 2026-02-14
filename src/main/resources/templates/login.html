@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <title>Login</title>
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
+
+<div th:insert="~{layout/base :: header}"></div>
 
 <h2>Login</h2>
 

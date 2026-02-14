@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Schedule</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h1>Schedule</h1>
+<div th:insert="~{layout/base :: header}"></div>
 
-<a href="/admin/schedule/new">Add lesson</a>
+<h1>Расписание</h1>
+
+<a href="/admin/schedule/new">Добавить урок</a>
 
 <div th:each="c : ${classes}">
     <h2 th:text="'Class ' + ${c.name}"></h2>
@@ -44,6 +46,6 @@
     </table>
 </div>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 </body>
 </html>

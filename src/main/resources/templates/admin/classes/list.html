@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
 
-<h2>Classes</h2>
+<div th:insert="~{layout/base :: header}"></div>
+
+<h2>Классы</h2>
 
 <div th:if="${errorMessage}" style="color:red;">
     <p th:text="${errorMessage}"></p>
 </div>
 
-<a th:href="@{/admin/classes/new}">Add class</a>
+<a th:href="@{/admin/classes/new}">Добавить класс</a>
 
 <table border="1">
     <tr>
-        <th>Name</th>
-        <th>Actions</th>
+        <th>Название</th>
+        <th>действия</th>
     </tr>
     <tr th:each="c : ${classes}">
         <td th:text="${c.name}"></td>
         <td>
-            <a th:href="@{/admin/classes/edit/{id}(id=${c.id})}">Edit</a>
-            <a th:href="@{/admin/classes/delete/{id}(id=${c.id})}">Delete</a>
+            <a th:href="@{/admin/classes/edit/{id}(id=${c.id})}">Изменить</a>
+            <a th:href="@{/admin/classes/delete/{id}(id=${c.id})}">Удалить</a>
         </td>
     </tr>
 </table>
 
-<a href="/home">Back home</a>
+<a href="/home">Назад</a>
 </body>
 </html>

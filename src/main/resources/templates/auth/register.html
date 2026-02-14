@@ -2,19 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Регистрация</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <div th:replace="layout/head :: head('Школьная система')"></div>
 </head>
+
 <body>
-<h2>Register</h2>
+
+<div th:insert="~{layout/base :: header}"></div>
+<h2>Регистрация</h2>
 
 <form th:action="@{/register}" th:object="${user}" method="post">
     <input type="email" th:field="*{email}" placeholder="Email" required>
     <input type="password" th:field="*{password}" placeholder="Пароль" required>
-    <button type="submit">Register</button>
+    <button type="submit">Регистрация</button>
     <form action="/login" target="_blank">
-        <button>login</button>
+        <button>Вернуться на страницу входа</button>
     </form>
 </form>
 </body>
