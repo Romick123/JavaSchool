@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Учитель')"></div>
 </head>
 
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h1>Учитель</h1>
+<main class="form-container">
+    <div class="form-card">
 
-<form th:action="@{/admin/teachers/save}"
-      th:object="${teacher}"
-      method="post">
+        <h1 class="form-title">Учитель</h1>
 
-    <input type="hidden" th:field="*{id}"/>
+        <form th:action="@{/admin/teachers/save}"
+              th:object="${teacher}"
+              method="post">
 
-    <div>
-        Имя:
-        <input type="text" th:field="*{name}" required>
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" th:field="*{name}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Предметы</label>
+                <select th:field="*{subjects}" multiple>
+                    <option th:each="s : ${subjects}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <a th:href="@{/admin/teachers}" class="form-link">← Назад</a>
+                <button type="submit" class="btn">Сохранить</button>
+            </div>
+
+        </form>
     </div>
-
-    <div>
-        Предметы:
-        <select th:field="*{subjects}" multiple size="5">
-            <option th:each="s : ${subjects}"
-                    th:value="${s.id}"
-                    th:text="${s.name}"
-                    th:selected="${teacher.subjects.contains(s)}">
-            </option>
-        </select>
-    </div>
-
-    <button type="submit">Сохранить</button>
-</form>
-
-<a href="/admin/teachers">Назад</a>
+</main>
 
 </body>
 </html>

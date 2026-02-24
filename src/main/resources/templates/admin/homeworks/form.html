@@ -8,49 +8,56 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Домашнее задание</h2>
+<main class="form-container">
+    <div class="form-card">
 
-<form th:action="@{/admin/homeworks/save}"
-      th:object="${homework}"
-      method="post">
+        <h1 class="form-title">Домашнее задание</h1>
 
-    <input type="hidden" th:field="*{id}"/>
+        <form th:action="@{/admin/homeworks/save}"
+              th:object="${homework}"
+              method="post">
 
-    <p>
-        Класс:
-        <select th:field="*{classRoom}">
-            <option th:each="c: ${classes}"
-                    th:value="${c.id}"
-                    th:text="${c.name}">
-            </option>
-        </select>
-    </p>
+            <input type="hidden" th:field="*{id}"/>
 
-    <p>
-        Предмет:
-        <select th:field="*{subject}">
-            <option th:each="s: ${subjects}"
-                    th:value="${s.id}"
-                    th:text="${s.name}">
-            </option>
-        </select>
-    </p>
+            <div class="form-group">
+                <label>Класс</label>
+                <select th:field="*{classRoom}">
+                    <option th:each="c : ${classes}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </div>
 
-    <p>
-        Задание:
-        <textarea th:field="*{description}"></textarea>
-    </p>
+            <div class="form-group">
+                <label>Предмет</label>
+                <select th:field="*{subject}">
+                    <option th:each="s : ${subjects}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </div>
 
-    <p>
-        Дата сдачи:
-        <input type="date" th:field="*{dueDate}">
-    </p>
+            <div class="form-group">
+                <label>Задание</label>
+                <textarea th:field="*{description}"
+                          rows="4"></textarea>
+            </div>
 
-    <button type="submit">Сохранить</button>
+            <div class="form-group">
+                <label>Дата сдачи</label>
+                <input type="date" th:field="*{dueDate}">
+            </div>
 
-</form>
+            <div class="form-actions">
+                <a th:href="@{/admin/homeworks}" class="form-link">← Назад</a>
+                <button type="submit" class="btn">Сохранить</button>
+            </div>
 
-<a href="/admin/homeworks">Назад</a>
+        </form>
+    </div>
+</main>
 
 </body>
 </html>

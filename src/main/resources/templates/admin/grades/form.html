@@ -8,52 +8,62 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Оценка</h2>
+<main class="form-container">
+    <div class="form-card">
 
-<form th:action="@{/admin/grades/save}"
-      th:object="${grade}"
-      method="post">
+        <h1 class="form-title">Оценка</h1>
 
-    <input type="hidden" th:field="*{id}"/>
+        <form th:action="@{/admin/grades/save}"
+              th:object="${grade}"
+              method="post">
 
-    <p>
-        Ученик:
-        <select th:field="*{student}">
-            <option th:each="s: ${students}"
-                    th:value="${s.id}"
-                    th:text="${s.name}">
-            </option>
-        </select>
-    </p>
+            <input type="hidden" th:field="*{id}"/>
 
-    <p>
-        Предмет:
-        <select th:field="*{subject}">
-            <option th:each="s: ${subjects}"
-                    th:value="${s.id}"
-                    th:text="${s.name}">
-            </option>
-        </select>
-    </p>
+            <div class="form-group">
+                <label>Ученик</label>
+                <select th:field="*{student}">
+                    <option th:each="s : ${students}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </div>
 
-    <p>
-        Оценка:
-        <input type="number" th:field="*{grade_value}" min="1" max="5"/>
-    </p>
+            <div class="form-group">
+                <label>Предмет</label>
+                <select th:field="*{subject}">
+                    <option th:each="s : ${subjects}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </div>
 
-    <p>
-        За что:
-        <input type="text" th:field="*{typeOfWork}"/>
-    </p>
+            <div class="form-group">
+                <label>Оценка</label>
+                <input type="number"
+                       th:field="*{grade_value}"
+                       min="1"
+                       max="5">
+            </div>
 
-    <p>
-        Дата:
-        <input type="date" th:field="*{date}"/>
-    </p>
+            <div class="form-group">
+                <label>Тип работы</label>
+                <input type="text" th:field="*{typeOfWork}">
+            </div>
 
-    <button type="submit">Сохранить</button>
-</form>
+            <div class="form-group">
+                <label>Дата</label>
+                <input type="date" th:field="*{date}">
+            </div>
 
-<a href="/admin/grades">Назад</a>
+            <div class="form-actions">
+                <a th:href="@{/admin/grades}" class="form-link">← Назад</a>
+                <button type="submit" class="btn">Сохранить</button>
+            </div>
+
+        </form>
+    </div>
+</main>
 </body>
 </html>

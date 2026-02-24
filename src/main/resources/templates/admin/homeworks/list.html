@@ -8,32 +8,39 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Домашняя работа</h2>
+<div class="page">
 
-<a th:href="@{/admin/homeworks/new}">Add Homework</a>
+    <div class="page-header">
+        <h2>Домашние задания</h2>
+        <a th:href="@{/admin/homeworks/new}" class="btn btn-primary">Добавить</a>
+    </div>
 
-<table border="1">
-    <tr>
-        <th>Class</th>
-        <th>Subject</th>
-        <th>description</th>
-        <th>Due date</th>
-        <th>Actions</th>
-    </tr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Класс</th>
+            <th>Предмет</th>
+            <th>Описание</th>
+            <th>Сдать до</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
 
-    <tr th:each="h : ${homeworks}">
-        <td th:text="${h.classRoom.name}"></td>
-        <td th:text="${h.subject.name}"></td>
-        <td th:text="${h.description}"></td>
-        <td th:text="${h.dueDate}"></td>
-        <td>
-            <a th:href="@{/admin/homeworks/edit/{id}(id=${h.id})}">Изменить</a> |
-            <a th:href="@{/admin/homeworks/delete/{id}(id=${h.id})}">Удалить</a>
-        </td>
-    </tr>
+        <tbody>
+        <tr th:each="h : ${homeworks}">
+            <td th:text="${h.classRoom.name}"></td>
+            <td th:text="${h.subject.name}"></td>
+            <td th:text="${h.description}"></td>
+            <td th:text="${h.dueDate}"></td>
+            <td class="actions">
+                <a th:href="@{/admin/homeworks/edit/{id}(id=${h.id})}" class="btn btn-secondary">Изменить</a>
+                <a th:href="@{/admin/homeworks/delete/{id}(id=${h.id})}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-</table>
-
-<a href="/home">Назад</a>
+    <a href="/home" class="btn btn-secondary" style="margin-top:20px;">Назад</a>
+</div>
 </body>
 </html>

@@ -8,44 +8,49 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h1>Расписание</h1>
+<div class="page">
 
-<a href="/admin/schedule/new">Добавить урок</a>
+    <div class="page-header">
+        <h1>Расписание</h1>
+        <a href="/admin/schedule/new" class="btn btn-primary">Добавить урок</a>
+    </div>
 
-<div th:each="c : ${classes}">
-    <h2 th:text="'Class ' + ${c.name}"></h2>
+    <div th:each="c : ${classes}">
+        <h2 th:text="'Класс ' + ${c.name}"></h2>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Lesson</th>
-            <th th:each="d : ${days}" th:text="${d}"></th>
-        </tr>
-        </thead>
+        <table class="schedule-table">
+            <thead>
+            <tr>
+                <th>Урок</th>
+                <th th:each="d : ${days}" th:text="${d}"></th>
+            </tr>
+            </thead>
 
-        <tbody>
-        <tr th:each="l : ${lessons}">
-            <td><b th:text="${l}"></b></td>
+            <tbody>
+            <tr th:each="l : ${lessons}">
+                <td><b th:text="${l}"></b></td>
 
-            <td th:each="d : ${days}">
-                <div th:each="s : ${schedule}"
-                     th:if="${s.classRoom.id == c.id and s.lessonNumber == l and s.dayOfWeek == d}"
-                     class="lesson-cell">
+                <td th:each="d : ${days}">
+                    <div th:each="s : ${schedule}"
+                         th:if="${s.classRoom.id == c.id and s.lessonNumber == l and s.dayOfWeek == d}"
+                         class="lesson-cell">
 
-                    <a th:href="@{/admin/schedule/edit/{id}(id=${s.id})}"
-                       class="lesson-link">
+                        <a th:href="@{/admin/schedule/edit/{id}(id=${s.id})}"
+                           class="lesson-link">
 
-                        <span th:text="${s.subject.name}"></span>
-                        <small th:text="${s.teacher.name}"></small>
+                            <span th:text="${s.subject.name}"></span>
+                            <small th:text="${s.teacher.name}"></small>
 
-                    </a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/home" class="btn btn-secondary">Назад</a>
 </div>
 
-<a href="/home">Назад</a>
 </body>
 </html>

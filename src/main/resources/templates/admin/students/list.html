@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Ученики')"></div>
 </head>
-
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h1>Ученики</h1>
+<div class="page">
 
-<div th:if="${errorMessage}" style="color:red;">
-    <p th:text="${errorMessage}"></p>
+    <div class="page-header">
+        <h1>Ученики</h1>
+        <a href="/admin/students/new" class="btn btn-primary">Добавить ученика</a>
+    </div>
+
+    <div th:if="${errorMessage}" style="color:red; margin-bottom:10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Класс</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.classRoom.name}"></td>
+            <td class="actions">
+                <a th:href="@{/admin/students/edit/{id}(id=${student.id})}"
+                   class="btn btn-secondary">Изменить</a>
+                <a th:href="@{/admin/students/delete/{id}(id=${student.id})}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Удалить ученика?')">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/home" class="btn btn-secondary" style="margin-top:20px;">Назад</a>
+
 </div>
-
-<a href="/admin/students/new">Добавить студента</a>
-
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Class</th>
-        <th>Actions</th>
-    </tr>
-
-    <tr th:each="student : ${students}">
-        <td th:text="${student.name}"></td>
-        <td th:text="${student.classRoom.name}"></td>
-        <td>
-            <a th:href="@{/admin/students/edit/{id}(id=${student.id})}">Изменить</a>
-            |
-            <a th:href="@{/admin/students/delete/{id}(id=${student.id})}"
-               onclick="return confirm('Delete?')">Удалить</a>
-        </td>
-    </tr>
-</table>
-
-<a href="/home">Назад</a>
-
 </body>
 </html>

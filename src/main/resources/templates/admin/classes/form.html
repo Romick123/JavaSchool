@@ -8,20 +8,30 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Класс</h2>
+<main class="form-container">
+    <div class="form-card">
 
-<form th:action="@{/admin/classes}" th:object="${classRoom}" method="post">
+        <h1 class="form-title">Класс</h1>
 
-    <input type="hidden" th:field="*{id}"/>
+        <form th:action="@{/admin/classes}"
+              th:object="${classRoom}"
+              method="post">
 
-    Название:
-    <input type="text" th:field="*{name}" required/>
+            <input type="hidden" th:field="*{id}"/>
 
-    <button type="submit">Сохранить</button>
+            <div class="form-group">
+                <label>Название класса</label>
+                <input type="text" th:field="*{name}" required>
+            </div>
 
-</form>
+            <div class="form-actions">
+                <a th:href="@{/admin/classes}" class="form-link">← Назад</a>
+                <button type="submit" class="btn">Сохранить</button>
+            </div>
 
-<a href="/admin/classes">Назад</a>
+        </form>
+    </div>
+</main>
 
 </body>
 </html>

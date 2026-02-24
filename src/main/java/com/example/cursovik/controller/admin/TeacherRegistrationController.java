@@ -1,4 +1,4 @@
-package com.example.cursovik.controller.admin;
+/*package com.example.cursovik.controller.admin;
 
 import com.example.cursovik.entity.User;
 import com.example.cursovik.service.UserService;
@@ -29,3 +29,4 @@ public class TeacherRegistrationController {
         return "redirect:/home";
     }
 }
+*/

@@ -8,15 +8,20 @@
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2>Регистрация</h2>
+<main class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Регистрация</h2>
 
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <input type="email" th:field="*{email}" placeholder="Email" required>
-    <input type="password" th:field="*{password}" placeholder="Пароль" required>
-    <button type="submit">Регистрация</button>
-    <form action="/login" target="_blank">
-        <button>Вернуться на страницу входа</button>
-    </form>
-</form>
+        <form th:action="@{/register}" th:object="${user}" method="post" class="auth-form">
+            <input type="email" th:field="*{email}" placeholder="Email" required>
+            <input type="password" th:field="*{password}" placeholder="Пароль" required>
+            <button type="submit" class="btn auth-btn">Регистрация</button>
+            <div class="auth-footer">
+                <span>Уже есть аккаунт</span>
+                <a th:href="@{/login}" class="auth-link">Вход</a>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

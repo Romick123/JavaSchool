@@ -8,27 +8,37 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Классы</h2>
+<div class="page">
 
-<div th:if="${errorMessage}" style="color:red;">
-    <p th:text="${errorMessage}"></p>
+    <div class="page-header">
+        <h2>Классы</h2>
+        <a th:href="@{/admin/classes/new}" class="btn btn-primary">Добавить класс</a>
+    </div>
+
+    <div th:if="${errorMessage}" style="color:red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${classes}">
+            <td th:text="${c.name}"></td>
+            <td class="actions">
+                <a th:href="@{/admin/classes/edit/{id}(id=${c.id})}" class="btn btn-secondary">Изменить</a>
+                <a th:href="@{/admin/classes/delete/{id}(id=${c.id})}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/home" class="btn btn-secondary" style="margin-top:20px;">Назад</a>
 </div>
-
-<a th:href="@{/admin/classes/new}">Добавить класс</a>
-
-<table border="1">
-    <tr>
-        <th>Название</th>
-        <th>действия</th>
-    </tr>
-    <tr th:each="c : ${classes}">
-        <td th:text="${c.name}"></td>
-        <td>
-            <a th:href="@{/admin/classes/edit/{id}(id=${c.id})}">Изменить</a>
-            <a th:href="@{/admin/classes/delete/{id}(id=${c.id})}">Удалить</a>
-        </td>
-    </tr>
-</table>
 
 <a href="/home">Назад</a>
 </body>

@@ -1,5 +1,6 @@
 package com.example.cursovik.controller.teacher;
 
+import com.example.cursovik.Security.CustomUserDeatils;
 import com.example.cursovik.entity.*;
 import com.example.cursovik.repository.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,7 +33,8 @@ public class TeacherGradesController {
     }
 
     @GetMapping
-    public String selectSubject(@AuthenticationPrincipal User user, Model model){
+    public String selectSubject(@AuthenticationPrincipal CustomUserDeatils customUser, Model model){
+        User user = customUser.getUser();
         Teacher teacher = teacherRepository.findByUser(user).orElseThrow();
         model.addAttribute("subjects", teacher.getSubjects());
         return "teacher/grades/subjects";

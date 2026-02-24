@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Ученик')"></div>
 </head>
 
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h1>Ученик</h1>
-<form th:action="@{/admin/students/save}" th:object="${student}" method="post">
+<main class="form-container">
+    <div class="form-card">
 
-    <input type="hidden" th:field="*{id}"/>
+        <h1 class="form-title">Ученик</h1>
 
-    <label>Name:</label>
-    <input type="text" th:field="*{name}" required/>
+        <form th:action="@{/admin/students/save}"
+              th:object="${student}"
+              method="post">
 
-    <br><br>
+            <input type="hidden" th:field="*{id}"/>
 
-    <label>Class:</label>
-    <select th:field="*{classRoom}">
-        <option th:each="c : ${classRooms}"
-                th:value="${c.id}"
-                th:text="${c.name}">
-        </option>
-    </select>
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" th:field="*{name}" required>
+            </div>
 
-    <br><br>
+            <div class="form-group">
+                <label>Класс</label>
+                <select th:field="*{classRoom}">
+                    <option th:each="c : ${classRooms}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </div>
 
-    <button type="submit">Сохранить</button>
+            <div class="form-actions">
+                <a th:href="@{/admin/students}" class="form-link">← Отмена</a>
+                <button type="submit" class="btn">Сохранить</button>
+            </div>
 
-</form>
-
-<a href="/admin/students">Отмена</a>
+        </form>
+    </div>
+</main>
 
 </body>
 </html>

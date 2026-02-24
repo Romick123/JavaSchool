@@ -8,32 +8,42 @@
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Оценки</h2>
+<div class="page">
 
-<a th:href="@{/admin/grades/new}">Поставить оценку</a>
+    <div class="page-header">
+        <h2>Оценки</h2>
+        <a th:href="@{/admin/grades/new}" class="btn btn-primary">Поставить оценку</a>
+    </div>
 
-<table border="1">
-    <tr>
-        <th>Ученик</th>
-        <th>Предмет</th>
-        <th>Оценка</th>
-        <th>За что</th>
-        <th>Дата</th>
-        <th>действие</th>
-    </tr>
-    <tr th:each="g: ${grades}">
-        <td th:text="${g.student.name}"></td>
-        <td th:text="${g.subject.name}"></td>
-        <td th:text="${g.grade_value}"></td>
-        <td th:text="${g.typeOfWork}"></td>
-        <td th:text="${g.date}"></td>
-        <td>
-            <a th:href="@{/admin/grades/edit/{id}(id=${g.id})}">Изменить</a> |
-            <a th:href="@{/admin/grades/delete/{id}(id=${g.id})}">Удалить</a>
-        </td>
-    </tr>
-</table>
+    </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Ученик</th>
+            <th>Предмет</th>
+            <th>Оценка</th>
+            <th>Тип</th>
+            <th>Дата</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
 
-<a href="/home">Назад</a>
+        <tbody>
+        <tr th:each="g : ${grades}">
+            <td th:text="${g.student.name}"></td>
+            <td th:text="${g.subject.name}"></td>
+            <td><b th:text="${g.grade_value}"></b></td>
+            <td th:text="${g.typeOfWork}"></td>
+            <td th:text="${g.date}"></td>
+            <td class="actions">
+                <a th:href="@{/admin/grades/edit/{id}(id=${g.id})}" class="btn btn-secondary">Изменить</a>
+                <a th:href="@{/admin/grades/delete/{id}(id=${g.id})}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/home" class="btn btn-secondary" style="margin-top:20px;">Назад</a>
+</div>
 </body>
 </html>

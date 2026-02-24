@@ -1,5 +1,6 @@
 package com.example.cursovik.controller.teacher;
 
+import com.example.cursovik.Security.CustomUserDeatils;
 import com.example.cursovik.entity.Homework;
 import com.example.cursovik.entity.Teacher;
 import com.example.cursovik.entity.User;
@@ -37,7 +38,8 @@ public class TeacherHomeworkController {
     }
 
     @GetMapping
-    public String addForm(@AuthenticationPrincipal User user, Model model) {
+    public String addForm(@AuthenticationPrincipal CustomUserDeatils customUser, Model model) {
+        User user = customUser.getUser();
         Teacher teacher = teacherRepository.findByUser(user).orElseThrow();
         model.addAttribute("subjects", teacher.getSubjects());
         model.addAttribute("classes", classRoomRepository.findAll());

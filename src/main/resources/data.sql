@@ -1,58 +1,72 @@
 --password = 1234
-INSERT INTO users (id, email, password, role) VALUES
-(1, 'admin@test.com',   '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'ADMIN'),
-(2, 'teacher1@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(3, 'teacher2@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(4, 'teacher3@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(5, 'teacher4@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(6, 'teacher5@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(7, 'teacher6@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(8, 'teacher7@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(9, 'teacher8@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
-(10,'parent@test.com',  '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'PARENT');
+INSERT INTO users (email, password, role) VALUES
+('admin@test.com',   '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'ADMIN'),
+('teacher1@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher2@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher3@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher4@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher5@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher6@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher7@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('teacher8@test.com','$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'TEACHER'),
+('parent@test.com',  '$2a$10$5JIX0dRaCZhxFnzja2J9G.Sm55W6m/AZi3UxAZeJNDGq6TrEUdhg2', 'PARENT');
 
-INSERT INTO class_room (id, name) VALUES
-(1,'5A'),(2,'5B'),(3,'6A'),(4,'6B'),(5,'7A'),
-(6,'7B'),(7,'8A'),(8,'8B'),(9,'9A'),(10,'9B');
+INSERT INTO class_room (name) VALUES
+('5A'),('5B'),('6A'),('6B'),('7A'),
+('7B'),('8A'),('8B'),('9A'),('9B');
 
-INSERT INTO subjects (id, name) VALUES
-(1,'Mathematics'),
-(2,'Physics'),
-(3,'History'),
-(4,'Biology'),
-(5,'Chemistry'),
-(6,'English'),
-(7,'Geography'),
-(8,'Computer Science');
+INSERT INTO subjects (name) VALUES
+('Mathematics'),
+('Physics'),
+('History'),
+('Biology'),
+('Chemistry'),
+('English'),
+('Geography'),
+('Computer Science');
 
-INSERT INTO teachers (id, name, user_id) VALUES
-(1,'Mr. Brown',2),
-(2,'Mrs. Green',3),
-(3,'Mr. White',4),
-(4,'Mrs. Black',5),
-(5,'Mr. Stone',6),
-(6,'Mrs. Hill',7),
-(7,'Mr. Wood',8),
-(8,'Mrs. King',9);
+INSERT INTO teachers (name, user_id) VALUES
+('Mr. Brown',(SELECT id FROM users WHERE email = 'teacher1@test.com')),
+('Mrs. Green',(SELECT id FROM users WHERE email = 'teacher2@test.com')),
+('Mr. White',(SELECT id FROM users WHERE email = 'teacher3@test.com')),
+('Mrs. Black',(SELECT id FROM users WHERE email = 'teacher4@test.com')),
+('Mr. Stone',(SELECT id FROM users WHERE email = 'teacher5@test.com')),
+('Mrs. Hill',(SELECT id FROM users WHERE email = 'teacher6@test.com')),
+('Mr. Wood',(SELECT id FROM users WHERE email = 'teacher7@test.com')),
+('Mrs. King',(SELECT id FROM users WHERE email = 'teacher8@test.com'));
 
 INSERT INTO teachers_subjects (teacher_id, subject_id) VALUES
-(1,1),(1,2),
-(2,3),(2,7),
-(3,4),(3,5),
-(4,6),(4,8),
-(5,1),(5,5),
-(6,2),(6,4),
-(7,3),(7,6),
-(8,7),(8,8);
+((SELECT id FROM teachers WHERE name = 'Mr. Brown'),(SELECT id FROM subjects WHERE name = 'Mathematics')),((SELECT id FROM teachers WHERE name = 'Mr. Brown'),(SELECT id FROM subjects WHERE name = 'Physics')),
+((SELECT id FROM teachers WHERE name = 'Mrs. Green'),(SELECT id FROM subjects WHERE name = 'History')),((SELECT id FROM teachers WHERE name = 'Mrs. Green'),(SELECT id FROM subjects WHERE name = 'Geography')),
+((SELECT id FROM teachers WHERE name = 'Mr. White'),(SELECT id FROM subjects WHERE name = 'Biology')),((SELECT id FROM teachers WHERE name = 'Mr. White'),(SELECT id FROM subjects WHERE name = 'Chemistry')),
+((SELECT id FROM teachers WHERE name = 'Mrs. Black'),(SELECT id FROM subjects WHERE name = 'English')),((SELECT id FROM teachers WHERE name = 'Mrs. Black'),(SELECT id FROM subjects WHERE name = 'Computer Science')),
+((SELECT id FROM teachers WHERE name = 'Mr. Stone'),(SELECT id FROM subjects WHERE name = 'Mathematics')),((SELECT id FROM teachers WHERE name = 'Mr. Stone'),(SELECT id FROM subjects WHERE name = 'Chemistry')),
+((SELECT id FROM teachers WHERE name = 'Mrs. Hill'),(SELECT id FROM subjects WHERE name = 'Physics')),((SELECT id FROM teachers WHERE name = 'Mrs. Hill'),(SELECT id FROM subjects WHERE name = 'Biology')),
+((SELECT id FROM teachers WHERE name = 'Mr. Wood'),(SELECT id FROM subjects WHERE name = 'History')),((SELECT id FROM teachers WHERE name = 'Mr. Wood'),(SELECT id FROM subjects WHERE name = 'English')),
+((SELECT id FROM teachers WHERE name = 'Mrs. King'),(SELECT id FROM subjects WHERE name = 'Geography')),((SELECT id FROM teachers WHERE name = 'Mrs. King'),(SELECT id FROM subjects WHERE name = 'Computer Science'));
 
-INSERT INTO students (id, name, class_room_id) VALUES
-(1,'Ivan Petrov',1),(2,'Anna Smirnova',1),(3,'Pavel Ivanov',1),(4,'Olga Sidorova',1),
-(5,'Dmitry Kuznetsov',1),(6,'Maria Volkova',1),(7,'Sergey Orlov',1),(8,'Elena Morozova',1),
-(9,'Alexey Fedorov',1),(10,'Natalia Pavlova',1),
+INSERT INTO students (name, class_room_id) VALUES
+('Ivan Petrov',1),
+('Anna Smirnova',1),
+('Pavel Ivanov',1),
+('Olga Sidorova',1),
+('Dmitry Kuznetsov',1),
+('Maria Volkova',1),
+('Sergey Orlov',1),
+('Elena Morozova',1),
+('Alexey Fedorov',1),
+('Natalia Pavlova',1),
 
-(11,'Kirill Popov',2),(12,'Irina Lebedeva',2),(13,'Roman Kozlov',2),(14,'Svetlana Novikova',2),
-(15,'Maksim Egorov',2),(16,'Alina Vasilieva',2),(17,'Denis Zaitsev',2),(18,'Polina Antonova',2),
-(19,'Nikita Sorokin',2),(20,'Yulia Romanova',2);
+('Kirill Popov',2),
+('Irina Lebedeva',2),
+('Roman Kozlov',2),
+('Svetlana Novikova',2),
+('Maksim Egorov',2),
+('Alina Vasilieva',2),
+('Denis Zaitsev',2),
+('Polina Antonova',2),
+('Nikita Sorokin',2),
+('Yulia Romanova',2);
 
 INSERT INTO schedule (class_room_id, subject_id, teacher_id, day_of_week, lesson_number) VALUES
 (1,1,1,'MONDAY',1),(1,6,4,'MONDAY',2),(1,3,2,'MONDAY',3),

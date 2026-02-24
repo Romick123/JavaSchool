@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Логин')"></div>
 </head>
 
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
 
-<h2>Login</h2>
+<main class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Вход в систему</h2>
 
-<form th:action="@{/login}" method="post">
-    <input type="text" name="username" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
+        <form th:action="@{/login}" method="post" class="auth-form">
+            <input type="text" name="username" placeholder="Email" required>
 
-    <button type="submit">Login</button>
-</form>
-<form action="/register" target="_blank">
-    <button>Register</button>
-</form>
+            <input type="password" name="password" placeholder="Пароль" required>
+
+            <button type="submit" class="btn auth-btn">Войти</button>
+        </form>
+
+        <div class="auth-footer">
+            <span>Нет аккаунта?</span>
+            <a th:href="@{/register}" class="auth-link">Зарегистрироваться</a>
+        </div>
+    </div>
+</main>
 </body>
 </html>

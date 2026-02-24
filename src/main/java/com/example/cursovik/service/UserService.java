@@ -27,6 +27,7 @@ public class UserService {
         String password = user.getPassword();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.TEACHER);
+        user.setId(null);
         userRepository.save(user);
         sendEmail(password, user.getEmail());
     }
