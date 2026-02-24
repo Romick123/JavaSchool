@@ -7,13 +7,31 @@
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2>Домашние задания</h2>
-<ul>
-    <li th:each="h : ${homeworks}">
-        <b th:text="${h.subject.name}"></b> :
-        <span th:text="${h.description}"></span>
-        (<span th:text="${h.dueDate}"></span>)
-    </li>
-</ul>
+<main class="auth-container">
+    <div class="auth-card wide">
+
+        <h2 class="auth-title">Домашние задания</h2>
+
+        <ul class="homework-list">
+            <li th:each="h : ${homeworks}" class="homework-item">
+                <div class="homework-header">
+                    <span class="homework-subject" th:text="${h.subject.name}"></span>
+                    <span class="homework-date">
+                        до <span th:text="${h.dueDate}"></span>
+                    </span>
+                </div>
+
+                <div class="homework-description"
+                     th:text="${h.description}">
+                </div>
+            </li>
+        </ul>
+
+        <a href="javascript:history.back()" class="btn-secondary">
+            ← Назад
+        </a>
+
+    </div>
+</main>
 </body>
 </html>

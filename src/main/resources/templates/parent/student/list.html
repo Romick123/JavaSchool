@@ -8,17 +8,29 @@
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2 th:text="'Класс ' + ${classRoom.name}"></h2>
 
-<ul>
-    <li th:each="s : ${students}">
-        <a th:href="@{/parent/students/{id}(id=${s.id})}"
-           th:text="${s.name}">
+<main class="auth-container">
+    <div class="auth-card">
+
+        <h2 class="auth-title" th:text="'Класс ' + ${classRoom.name}"></h2>
+
+        <ul class="action-list">
+            <li th:each="s : ${students}" class="action-item">
+                <span th:text="${s.name}" class="item-title"></span>
+
+                <a th:href="@{/parent/students/{id}(id=${s.id})}"
+                   class="btn-primary">
+                    👤 Профиль
+                </a>
+            </li>
+        </ul>
+
+        <a href="/parent/students" class="btn-secondary">
+            ← Назад к классам
         </a>
-    </li>
-</ul>
 
-<a href="/parent/students">← Назад к классам</a>
+    </div>
+</main>
 
 </body>
 </html>

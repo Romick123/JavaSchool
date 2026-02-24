@@ -8,41 +8,50 @@
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2 th:text="${student.name}"></h2>
-<p>
-    Класс:
-    <b th:text="${student.classRoom.name}"></b>
-</p>
+<main class="auth-container">
+    <div class="auth-card wide">
 
-<h3>Посещаемость</h3>
-<table>
-    <tr>
-        <th>Дата</th>
-        <th>Предмет</th>
-        <th>Статус</th>
-    </tr>
-    <tr th:each="a : ${attendance}">
-        <td th:text="${a.attendanceDate}"></td>
-        <td th:text="${a.subject.name}"></td>
-        <td th:text="${a.present ? '✔' : '✖'}"></td>
-    </tr>
-</table>
+        <h2 class="auth-title" th:text="${student.name}"></h2>
 
-<h3>Оценки</h3>
-<table>
-    <tr>
-        <th>Дата</th>
-        <th>Предмет</th>
-        <th>Оценка</th>
-    </tr>
-    <tr th:each="g : ${grades}">
-        <td th:text="${g.date}"></td>
-        <td th:text="${g.subject.name}"></td>
-        <td th:text="${g.grade_value}"></td>
-    </tr>
-</table>
+        <p class="info-line">
+            Класс:
+            <b th:text="${student.classRoom.name}"></b>
+        </p>
 
-<a href="javascript:history.back()">← Назад</a>
+        <h3>📅 Посещаемость</h3>
+        <table class="styled-table">
+            <tr>
+                <th>Дата</th>
+                <th>Предмет</th>
+                <th>Статус</th>
+            </tr>
+            <tr th:each="a : ${attendance}">
+                <td th:text="${a.attendanceDate}"></td>
+                <td th:text="${a.subject.name}"></td>
+                <td th:text="${a.present ? '✔ Присутствовал' : '✖ Отсутствовал'}"></td>
+            </tr>
+        </table>
+
+        <h3>📝 Оценки</h3>
+        <table class="styled-table">
+            <tr>
+                <th>Дата</th>
+                <th>Предмет</th>
+                <th>Оценка</th>
+            </tr>
+            <tr th:each="g : ${grades}">
+                <td th:text="${g.date}"></td>
+                <td th:text="${g.subject.name}"></td>
+                <td th:text="${g.grade_value}"></td>
+            </tr>
+        </table>
+
+        <a href="javascript:history.back()" class="btn-secondary">
+            ← Назад
+        </a>
+
+    </div>
+</main>
 
 </body>
 </html>

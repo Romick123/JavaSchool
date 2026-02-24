@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Выбор класса')"></div>
 </head>
 
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2 th:text="'Предмет: ' + ${subject.name}"></h2>
-<ul>
-    <li th:each="c : ${classes}">
-        <a th:href="@{/teacher/grades/subject/{s}/class/{c}(
-        s=${subject.id}, c=${c.id})}"
-           th:text="${c.name}">
-        </a>
-    </li>
-</ul>
-<a href="javascript:history.back()">← Назад</a>
+<main class="container">
+
+    <h1 class="page-title"
+        th:text="'Предмет: ' + ${subject.name}">
+    </h1>
+
+    <ul class="list-card">
+        <li th:each="c : ${classes}" class="list-item">
+            <a class="list-link"
+               th:href="@{/teacher/grades/subject/{s}/class/{c}(
+                    s=${subject.id}, c=${c.id})}"
+               th:text="${c.name}">
+            </a>
+        </li>
+    </ul>
+
+    <a href="javascript:history.back()" class="btn-secondary">← Назад</a>
+
+</main>
 </body>
 </html>

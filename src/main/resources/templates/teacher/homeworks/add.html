@@ -7,34 +7,57 @@
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2>Задать домашнее задание</h2>
+<main class="auth-container">
+    <div class="auth-card">
 
-<form th:action="@{/teacher/homework/save}"
-      th:object="${homework}"
-      method="post">
-    <select name="subject.id">
-        <option th:each="s : ${subjects}"
-                th:value="${s.id}"
-                th:text="${s.name}"></option>
-    </select>
+        <h2 class="auth-title">Задать домашнее задание</h2>
 
-    <select name="classRoom.id">
-        <option th:each="c : ${classes}"
-                th:value="${c.id}"
-                th:text="${c.name}"></option>
-    </select>
+        <form th:action="@{/teacher/homework/save}"
+              th:object="${homework}"
+              method="post"
+              class="auth-form">
 
-    <p>
-        Description:
-        <textarea th:field="*{description}"></textarea>
-    </p>
+            <label>
+                Предмет
+                <select name="subject.id">
+                    <option th:each="s : ${subjects}"
+                            th:value="${s.id}"
+                            th:text="${s.name}">
+                    </option>
+                </select>
+            </label>
 
-    <p>
-        Due date:
-        <input type="date" th:field="*{dueDate}">
-    </p>
+            <label>
+                Класс
+                <select name="classRoom.id">
+                    <option th:each="c : ${classes}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </label>
 
-    <button type="submit">Сохранить</button>
-</form>
+            <label>
+                Описание задания
+                <textarea th:field="*{description}" rows="4"></textarea>
+            </label>
+
+            <label>
+                Дата сдачи
+                <input type="date" th:field="*{dueDate}">
+            </label>
+
+            <button type="submit" class="btn-primary">
+                💾 Сохранить
+            </button>
+
+        </form>
+
+        <a href="javascript:history.back()" class="btn-secondary">
+            ← Назад
+        </a>
+
+    </div>
+</main>
 </body>
 </html>

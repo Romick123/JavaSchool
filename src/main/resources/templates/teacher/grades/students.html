@@ -1,32 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="layout/head :: head('Школьная система')"></div>
+    <div th:replace="layout/head :: head('Оценки класса')"></div>
 </head>
 
 <body>
 
 <div th:insert="~{layout/base :: header}"></div>
-<h2 th:text="${classRoom.name}"></h2>
+<main class="container">
 
-<table>
-    <tr>
-        <th>Ученик</th>
-        <th>Оценка</th>
-    </tr>
+    <h1 class="page-title"
+        th:text="${classRoom.name}">
+    </h1>
 
-    <tr th:each="s : ${students}">
-        <td th:text="${s.name}"></td>
-        <td>
-            <form method="post" th:action="@{/teacher/grades/add}">
-                <input type="hidden" name="studentId" th:value="${s.id}">
-                <input type="hidden" name="subjectId" th:value="${subject.id}">
-                <input type="number" name="gradeValue" min="1" max="5" required>
-                <button type="submit">✔</button>
-            </form>
-        </td>
-    </tr>
-</table>
-<a href="javascript:history.back()">← Назад</a>
+    <table class="table-card">
+        <thead>
+        <tr>
+            <th>Ученик</th>
+            <th>Оценка</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="s : ${students}">
+            <td th:text="${s.name}"></td>
+            <td>
+                <form class="inline-form"
+                      method="post"
+                      th:action="@{/teacher/grades/add}">
+
+                    <input type="hidden" name="studentId" th:value="${s.id}">
+                    <input type="hidden" name="subjectId" th:value="${subject.id}">
+
+                    <input class="grade-input"
+                           type="number"
+                           name="gradeValue"
+                           min="1"
+                           max="5"
+                           required>
+
+                    <button type="submit" class="btn-primary">✔</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="javascript:history.back()" class="btn-secondary">← Назад</a>
+
+</main>
 </body>
 </html>
